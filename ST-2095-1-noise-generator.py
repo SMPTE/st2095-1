@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2015,
+# Copyright (c) 2015, 2021,
 # The Society of Motion Picture and Television Engineers
 #
 # All rights reserved.
@@ -167,11 +167,14 @@ if diff != 0:
 
 # create and write the WAVE header
 dataLength = sampleSize * ( totalSamples - samplesPerPeriod ) * options.ChannelCount
+if dataLength+32 > 2**31-1:
+    raise ValueError("The selected properties exceed the capacity of the header.")
+
 waveHeader = \
-    "RIFF" + \
+    b"RIFF" + \
     struct.pack("<i", dataLength + 38) + \
-    "WAVE" + \
-    "fmt " + \
+    b"WAVE" + \
+    b"fmt " + \
     struct.pack("<ihhiihhh",
                 18,
                 1,
@@ -181,7 +184,7 @@ waveHeader = \
                 sampleSize * options.ChannelCount,
                 8 * sampleSize,
                 0) + \
-    "data" + \
+    b"data" + \
     struct.pack("<i", dataLength)
 
 writer = open(args[0], "wb") #"wb" (b for binary) required for Windows
@@ -254,9 +257,9 @@ writer.close()
 
 if options.VerboseFlag:
     accum = 10.0 * math.log10(accum / float(totalSamples - samplesPerPeriod))
-    print "%.2f seconds, RMS (dB) = %2.2f" \
-          % ( ( totalSamples - samplesPerPeriod ) / float(options.SampleRate),
-              accum + 3.01)
+    print("{0:0.2f} seconds, RMS (dB) = {1:2.2f}".format(
+        ( totalSamples - samplesPerPeriod ) / float(options.SampleRate),
+        accum + 3.01))
 
 #
 # end ST-2095-1-noise-generator.py
