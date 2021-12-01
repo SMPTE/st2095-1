@@ -33,8 +33,9 @@
 # WAVE file.
 #
 # r1 2015-02-18 -- Distributed with SMPTE ST 2095-1:2015
+# r2 2021-12-01 -- Distributed with SMPTE ST 2095-1:2022 (no substantive changes)
 #
-VERSION = "1.3"
+VERSION = "1.4"
 #
 
 import sys
