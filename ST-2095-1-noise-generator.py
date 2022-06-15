@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2015, 2021,
+# Copyright (c) 2015, 2021, 2022
 # The Society of Motion Picture and Television Engineers
 #
 # All rights reserved.
@@ -33,7 +33,7 @@
 # WAVE file.
 #
 # r1 2015-02-18 -- Distributed with SMPTE ST 2095-1:2015
-# r2 2021-12-01 -- Distributed with SMPTE ST 2095-1:2022 (no substantive changes)
+# r2 2022-06-15 -- Distributed with SMPTE ST 2095-1:2022 (no substantive changes)
 #
 VERSION = "1.4"
 #
@@ -84,7 +84,6 @@ maxPeak = -9.5     # Clipping Threshold in dB FS (+/-1.0 = 0 dB)
 # Initialize variables for generating a random number
 
 # Perodicity in samples; a power of two, <= 2^31.
-# Typical values are 524288, 1048576, 2097152 or 4194304.
 samplesPerPeriod = 524288
 randStep = 52737		   # Default step size for LCG PRNG
 
