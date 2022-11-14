@@ -1,5 +1,3 @@
-# st2095-1
-
 # SMPTE ST 2095-1, Calibration Reference Wideband Digital Pink Noise Signal
 
 _This repository is public._ 
